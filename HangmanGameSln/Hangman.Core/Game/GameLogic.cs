@@ -24,15 +24,17 @@ namespace Hangman.Core.Game
              "kappa", "black", "bacon", "strawberry", "led" };
             Random random = new Random();
 
-
+            //selects random variable
             string wordToGuess = wordList[random.Next(0, wordList.Length)].ToString();
+            //converts letter to uppercase
             string wordToGuessUppercase = wordToGuess.ToUpper();
 
             StringBuilder displayToPlayer = new StringBuilder(wordToGuess.Length);
             for (int i = 0; i < wordToGuess.Length; i++)
                 displayToPlayer.Append('*');
-
+            //list of correct guesses
             List<char> correctGuesses = new List<char>();
+            //list of incorrect guesses
             List<char> incorrectGuesses = new List<char>();
 
             int lives = 6;
@@ -44,18 +46,13 @@ namespace Hangman.Core.Game
 
            Console.SetCursorPosition(0, 20);
 
-           // Console.Write("Please enter your guess: ");
-
-            // _renderer.Render(10, 10, 6);
-
-                // Console.SetCursorPosition(25, 20);
-                string input;
-                char guess;
-
+            string input;
+            char guess;
+            //while lives are greater than zero and user has not won
                 while (!won && lives > 0)
-            {
+                {
                 
-               // _renderer.Render(10, 10, 0);
+               
                 Console.Write("Guess a letter: ");
 
                     input = Console.ReadLine().ToUpper();
@@ -94,12 +91,13 @@ namespace Hangman.Core.Game
 
                         Console.WriteLine("Nope, there's no '{0}' in it.", guess);
                         lives--;
+                    //draw hangman
                      _renderer.Render(10, 10, lives);
                 }
 
                     Console.WriteLine(displayToPlayer.ToString());
                 }
-
+                //if the user has won
                 if (won)
                     Console.WriteLine("You won!");
                 else
