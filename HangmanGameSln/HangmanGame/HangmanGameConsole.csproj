@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="GameLogic.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Hangman.Core\Hangman.Core.csproj" />
   </ItemGroup>
 

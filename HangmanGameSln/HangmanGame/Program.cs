@@ -13,10 +13,11 @@ namespace HangmanGameConsole
             Console.SetCursorPosition(10, 2);
             Console.Write("Welcome to Hangman!!");
 
-            var hangman = new HangmanGame();
-            hangman.Run();
+            var hangman = new GameLogic();
+            hangman.Play();
 
             Console.ForegroundColor = oldColor;
+             
 
 
             Console.SetCursorPosition(20, 25);
