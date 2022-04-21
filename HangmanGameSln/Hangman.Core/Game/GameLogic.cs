@@ -26,7 +26,7 @@ namespace Hangman.Core.Game
 
 
             string wordToGuess = wordList[random.Next(0, wordList.Length)].ToString();
-          //  string wordToGuessUppercase = wordToGuess.ToUpper();
+            string wordToGuessUppercase = wordToGuess.ToUpper();
 
             StringBuilder displayToPlayer = new StringBuilder(wordToGuess.Length);
             for (int i = 0; i < wordToGuess.Length; i++)
@@ -55,7 +55,7 @@ namespace Hangman.Core.Game
                 while (!won && lives > 0)
             {
                 
-                _renderer.Render(10, 10, 6);
+               // _renderer.Render(10, 10, 0);
                 Console.Write("Guess a letter: ");
 
                     input = Console.ReadLine().ToUpper();
@@ -94,7 +94,8 @@ namespace Hangman.Core.Game
 
                         Console.WriteLine("Nope, there's no '{0}' in it.", guess);
                         lives--;
-                    }
+                     _renderer.Render(10, 10, lives);
+                }
 
                     Console.WriteLine(displayToPlayer.ToString());
                 }
