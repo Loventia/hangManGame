@@ -24,11 +24,12 @@ namespace Hangman.Core.Game
              "kappa", "black", "bacon", "strawberry", "led" };
             Random random = new Random();
 
-            //selects random variable
+            //selects random word in the array
             string wordToGuess = wordList[random.Next(0, wordList.Length)].ToString();
             //converts letter to uppercase
             string wordToGuessUppercase = wordToGuess.ToUpper();
 
+            //created a stringbuilder object to show astericks
             StringBuilder displayToPlayer = new StringBuilder(wordToGuess.Length);
             for (int i = 0; i < wordToGuess.Length; i++)
                 displayToPlayer.Append('*');
@@ -56,27 +57,33 @@ namespace Hangman.Core.Game
                 Console.Write("Guess a letter: ");
 
                     input = Console.ReadLine().ToUpper();
+                    //only take the first letter of input
                     guess = input[0];
-
+                    
+                //if user repeats the same correct letter
                     if (correctGuesses.Contains(guess))
                     {
                         Console.WriteLine("You've already tried '{0}', and it was correct.", guess);
-                        continue;
+                        //continue;
                     }
-                    else if (incorrectGuesses.Contains(guess))
+                //if user repeats the same incorrect letter
+                else if (incorrectGuesses.Contains(guess))
                     {
                         Console.WriteLine("You've already tried '{0}', and it was incorrect", guess);
-                        continue;
+                       // continue;
                     }
-
+                    
+                    //if the letter entered is present in the randomly selected word
                     if (wordToGuessUppercase.Contains(guess))
                     {
+                        //add the letter to  correctGuesses list.
                         correctGuesses.Add(guess);
 
                         for (int i = 0; i < wordToGuess.Length; i++)
-                        {
+                        {   //checks if the letter guessed matches letters in  the word generated randomly
                             if (wordToGuessUppercase[i] == guess)
                             {
+                                //display the correct letter to the screen
                                 displayToPlayer[i] = wordToGuess[i];
                                 lettersRevealed++;
                             }
@@ -87,6 +94,7 @@ namespace Hangman.Core.Game
                     }
                     else
                     {
+                        //if user enters the incorrect letter add it to this list
                         incorrectGuesses.Add(guess);
 
                         Console.WriteLine("Nope, there's no '{0}' in it.", guess);
